@@ -1,5 +1,5 @@
 // import Styles
-import styles from './styles.module.css'
+import styles from './Header.module.css'
 
 // import Assets
 import logo from '../assets/logo.svg'
