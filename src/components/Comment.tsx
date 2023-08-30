@@ -4,10 +4,17 @@ import styles from './Comment.module.css'
 // import Phosphor
 import { ThumbsUp, Trash } from 'phosphor-react'
 
-export const Comment = () => {
+// import Components
+import { Avatar } from './Avatar'
+
+interface Props {
+    content : string
+}
+
+export const Comment = ({content} : Props) => {
     return(
         <div className={styles.comment}>
-            <img src={'https://avatars.githubusercontent.com/u/41848606?v=4'} alt="" />
+            <Avatar hasBorder={false} src={'https://avatars.githubusercontent.com/u/41848606?v=4'} />
 
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
@@ -22,7 +29,7 @@ export const Comment = () => {
                         </button>
                     </header>
 
-                    <p>Nossa, adorei amigo! Parabé|</p>
+                    <p>{content}</p>
                 </div>
 
                 <footer>
