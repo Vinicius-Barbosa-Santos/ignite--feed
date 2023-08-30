@@ -10,7 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { formatDistanceToNow } from 'date-fns'
 
 // import React
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 interface Author {
     avatarUrl: string,
@@ -46,9 +46,13 @@ export const Post = ({ author, content, publishedAt }: Props) => {
         setNewCommentsText('')
     }
 
-    const deleteComment = (commentToDelete : string) => {
+    const deleteComment = (commentToDelete: string) => {
         const commentsWithoutDeleteOne = comments.filter(comment => comment !== commentToDelete)
         setComments(commentsWithoutDeleteOne)
+    }
+
+    const handleNewCommentInvalid = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        e.target.setCustomValidity('Esse Campo é obrigatório!')
     }
 
     return (
@@ -79,21 +83,23 @@ export const Post = ({ author, content, publishedAt }: Props) => {
                 <strong>Deixe seu feedback</strong>
 
                 <textarea
+                    required
+                    onInvalid={handleNewCommentInvalid}
                     value={newCommentsText}
                     placeholder='Deixe um comentário'
-                    onChange={(e) => setNewCommentsText(e.target.value)}
+                    onChange={(e) => {setNewCommentsText(e.target.value), e.target.setCustomValidity('')}}
                 />
 
                 <footer>
-                    <button type='submit'>Comentar</button>
+                    <button type='submit'>Publicar</button>
                 </footer>
             </form>
 
             <div className={styles.commentList}>
                 {comments.map((comment) => (
-                    <Comment 
-                        key={comment} 
-                        content={comment} 
+                    <Comment
+                        key={comment}
+                        content={comment}
                         onDeleteComment={deleteComment}
                     />
                 ))}
