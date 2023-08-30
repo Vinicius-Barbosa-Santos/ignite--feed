@@ -8,6 +8,8 @@ import { Comment } from './Comment'
 // import Date-fns
 import ptBR from 'date-fns/locale/pt-BR'
 import { formatDistanceToNow } from 'date-fns'
+
+// import React
 import { FormEvent, useState } from 'react'
 
 interface Author {
