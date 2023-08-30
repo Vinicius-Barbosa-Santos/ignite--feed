@@ -11,7 +11,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { FormEvent, useState } from 'react'
 
 interface Author {
-    avatarUlr: string,
+    avatarUrl: string,
     name: string,
     role: string
 }
@@ -38,17 +38,22 @@ export const Post = ({ author, content, publishedAt }: Props) => {
         addSuffix: true
     })
 
-    const handleCreateNewComment = (e : FormEvent) => {
+    const handleCreateNewComment = (e: FormEvent) => {
         e.preventDefault()
         setComments([...comments, newCommentsText])
         setNewCommentsText('')
+    }
+
+    const deleteComment = (commentToDelete : string) => {
+        const commentsWithoutDeleteOne = comments.filter(comment => comment !== commentToDelete)
+        setComments(commentsWithoutDeleteOne)
     }
 
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <Avatar hasBorder src={author.avatarUlr} />
+                    <Avatar hasBorder src={author.avatarUrl} />
                     <div className={styles.authorInfo}>
                         <strong>{author.name}</strong>
                         <span>{author.role}</span>
@@ -61,9 +66,9 @@ export const Post = ({ author, content, publishedAt }: Props) => {
             <div className={styles.content}>
                 {content.map(item => {
                     if (item.type === 'paragraph') {
-                        return <p>{item.content}</p>
+                        return <p key={item.content}>{item.content}</p>
                     } else if (item.type === 'link') {
-                        return <p><a href='#'>{item.content}</a></p>
+                        return <p key={item.content}><a href='#'>{item.content}</a></p>
                     }
                 })}
             </div>
@@ -84,7 +89,11 @@ export const Post = ({ author, content, publishedAt }: Props) => {
 
             <div className={styles.commentList}>
                 {comments.map((comment) => (
-                    <Comment key={comment} content={comment} />
+                    <Comment 
+                        key={comment} 
+                        content={comment} 
+                        onDeleteComment={deleteComment}
+                    />
                 ))}
             </div>
         </article>

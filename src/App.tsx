@@ -9,30 +9,30 @@ import styles from './App.module.css'
 
 const posts = [
   {
-    id : 1,
+    id: 1,
     author: {
-      avatarUlr: 'https://avatars.githubusercontent.com/u/41848606?v=4',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/41848606?v=4',
       name: 'Vinícius Barbosa Santos',
       role: 'CTO'
     },
     content: [
-      {type : 'paragraph', content : 'Fala Galera'},
-      {type : 'paragraph', content : 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return'},
-      {type : 'link', content : 'jane.design/doctorcare'}
+      { type: 'paragraph', content: 'Fala Galera' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return' },
+      { type: 'link', content: 'jane.design/doctorcare' }
     ],
     publishedAt: new Date('2023-07-03 20:00:00')
   },
   {
-    id : 2,
+    id: 2,
     author: {
-      avatarUlr: 'https://github.com/maykbrito.png',
+      avatarUrl: 'https://github.com/maykbrito.png',
       name: 'Mayk Brito',
       role: 'Educator'
     },
     content: [
-      {type : 'paragraph', content : 'Fala Galera'},
-      {type : 'paragraph', content : 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return'},
-      {type : 'link', content : 'jane.design/doctorcare'}
+      { type: 'paragraph', content: 'Fala Galera' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return' },
+      { type: 'link', content: 'jane.design/doctorcare' }
     ],
     publishedAt: new Date('2023-07-10 20:00:00')
   },
@@ -45,10 +45,9 @@ const App = () => {
 
       <div className={styles.wrapper}>
         <SideBar />
-
         <main>
-          {posts.map((post) => (
-            <Post 
+          {posts.map(post => (
+            <Post
               key={post.id}
               author={post.author}
               content={post.content}
