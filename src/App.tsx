@@ -1,44 +1,62 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+// import Components
+import { Post } from "./components/Post"
+import { Header } from "./components/Header"
+import { SideBar } from "./components/SideBar"
 
-function App() {
-  const [count, setCount] = useState(0)
+// import Styles
+import './global.css'
+import styles from './App.module.css'
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://avatars.githubusercontent.com/u/41848606?v=4',
+      name: 'Vinícius Barbosa Santos',
+      role: 'CTO'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala Galera' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return' },
+      { type: 'link', content: 'jane.design/doctorcare' }
+    ],
+    publishedAt: new Date('2023-07-03 20:00:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'Educator'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala Galera' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return' },
+      { type: 'link', content: 'jane.design/doctorcare' }
+    ],
+    publishedAt: new Date('2023-07-10 20:00:00')
+  },
+]
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <Header />
+
+      <div className={styles.wrapper}>
+        <SideBar />
+        <main>
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          ))}
+        </main>
+      </div>
+    </>
   )
 }
 
