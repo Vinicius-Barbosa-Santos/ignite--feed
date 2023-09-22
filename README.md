@@ -6,6 +6,7 @@
 </p>
 
 <p align="center">
+  <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/ignite--feed/blob/master/github/Capa.png">
   <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/ignite--feed/blob/master/github/feed.png">
 </p>
 
